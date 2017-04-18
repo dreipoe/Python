@@ -1,0 +1,6 @@
+a = bool(1)
+b = bool(0)
+c = bool(0)
+print('a)', a and not(b) or c)
+print('b)', a and (not(b) or c))
+print('c)', a and (not(b)))
