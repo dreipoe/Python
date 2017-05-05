@@ -1,22 +1,14 @@
-import random
+import matrix
 a=[]
-for i in range(4):
-    a.append([])
-    for j in range(4):
-        a[i].append(random.randint(-10,10))
-    print(a[i])
+m=int(input('Введите кол-во строк: '))
+n=int(input('Введите кол-во столбцов: '))
 s=0
-k=0
-for j in range(4):
-    s=s+a[i][j]
-min=s
-for i in range(1,4):
-    s=0
-    for j in range(4):
-        s=s+a[i][j]
-    if s<min:
-        min=s
-        k=i+1
-print("%d-я строка с наименьшей суммой элементов: %d" % (k, min))
-    
-    
+for i in range(m):
+    a.append([])
+    if i%2==0:
+        [a[i].append(s+j) for j in range(n)]
+        s=s+n
+    else:
+        [a[i].append(s+n-j-1) for j in range(n)]
+        s=s+n
+matrix.MatrixOutput(a)

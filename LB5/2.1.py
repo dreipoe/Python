@@ -1,18 +1,17 @@
-import random
+import random, matrix
 a=[]
-for i in range(4):
-    a.append([])
-    for j in range(4):
-        a[i].append(random.randint(-10,10))
-    print(a[i])
+m=4
+n=4
+matrix.MatrixRandomInput(a,-1000,1000,m,n,0)
+matrix.MatrixOutput(a)
 s=0
-k=0
-for j in range(4):
-    s=s+a[i][j]
+k=1
+for j in range(n):
+    s=s+a[0][j]
 min=s
-for i in range(1,4):
+for i in range(1,m):
     s=0
-    for j in range(4):
+    for j in range(n):
         s=s+a[i][j]
     if s<min:
         min=s

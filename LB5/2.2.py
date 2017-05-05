@@ -1,38 +1,36 @@
-import random
+import matrix
 
 def swap(a,b):
-    buf=a
-    a=b
-    b=buf
+    return(b,a)
 
 arr=[]
 
-m=input('Введите кол-во строк: ')
-n=input('Введите кол-во столбцов: ')
+m=int(input('Введите кол-во строк: '))
+n=int(input('Введите кол-во столбцов: '))
 
-for i in range(m):
-    arr.append([])
-    for j in range(n):
-        arr[i].append(random.randint(-10,10))
-    print(arr[i])
-    
-k=0
-buf=0
+matrix.MatrixRandomInput(arr,-1000,1000,m,n)
+print('До: ')
+matrix.MatrixOutput(arr)
 
 for p in range(0,n,2):
-    ex=arr[0][p]
     for i in range(m):
-        for j in range(i,m):
-            if arr[j][p]<ex:
-                arr[j][p]=ex
+        ext=arr[i][p]
+        k=i
+        for j in range(i+1,m):
+            if arr[j][p]>ext:
+                ext=arr[j][p]
                 k=j
-        swap(a[k][p],a[i][p])
+        arr[i][p],arr[k][p]=swap(arr[i][p],arr[k][p])
         
 for q in range(1,n,2):
-    ex=arr[0][q]
     for i in range(m):
-        for j in range(i,m):
-            if arr[j][p]>ex:
-                arr[j][p]=ex
+        ext=arr[i][q]
+        k=i
+        for j in range(i+1,m):
+            if arr[j][q]<ext:
+                ext=arr[j][q]
                 k=j
-        swap(a[k][p],a[i][p])
+        arr[i][q],arr[k][q]=swap(arr[i][q],arr[k][q])
+
+print('После: ')
+matrix.MatrixOutput(arr)

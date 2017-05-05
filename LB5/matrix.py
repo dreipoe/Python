@@ -1,32 +1,30 @@
-def matrixoutput(a):
-    m=len(a)
-    n=len(a[0])
-    max=a[0][0]
-    min=a[0][0]
+import random
+
+def MatrixOutput(arr):
+    if not(type(arr)==list and type(arr[0])==list):
+        print('MatrixOutput: Параметр не является матрицей')
+        return
     
-    for i in range(m):
-        for j in range(n):
-            if a[i][j]>max:
-                max=a[i][j]
-            elif a[i][j]<min:
-                a[i][j]=min
-                
-    if min<0:
-        min=min-2*min
-        
-    if min>max:
-        max=min
-        
-    r=2
-    while(max>=10):
-        max=max/10
-        r=r+1
-    
-    for i in range(m):
-        for j in range(n):
-            print('{0:{r}}'.format(a[i][j],r=r),end=' ')
-        print()
-                
-arr=[[1,20,3],[40,5,60],[7,80,9]]
-matrixoutput(arr)
-    
+    m=len(arr)
+    n=len(arr[0])
+
+    if type(arr[0][0])==int:
+        for i in range(m):
+            [print('{0:>10}'.format(arr[i][j]), end=' ') for j in range(n)]
+            print()
+    else:
+        for i in range(m):
+            [print('{0:5.3f}'.format(arr[i][j]), end=' ') for j in range(n)]
+            print()
+
+def MatrixRandomInput(arr,a,b,m,n,*keytype):
+    if not(type(arr)==list):
+        print('MatrixRandomInt: Параметр не объявлен как массив')
+        return
+    if (m<=0 or n<=0):
+        print('MatrixRandomInt: Число строк или столбцов должно быть натуральным')
+        return
+    if not keytype:
+        [arr.append([random.randint(a,b) for j in range(n)]) for i in range(m)]
+    else:
+        [arr.append([random.uniform(a,b) for j in range(n)]) for i in range(m)]
